@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=HyperOS GPU Profiler
+Comment=HyperOS GPU Profiler
+Categories=Development;Debugger;Graphics;3DGraphics
+Icon=/opt/agi/icon.png
+Exec=/opt/agi/agi %f
+Terminal=false
+MimeType=application/x-gfxtrace;application/x-perfetto
