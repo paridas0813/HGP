@@ -218,6 +218,8 @@ public class TracerDialog {
     models.devices.addListener(listener);
     try {
       models.devices.loadDevices();
+      LOG.log(Level.WARNING, "models.devices.loadDevices();");
+
       return dialog.open();
     } finally {
       models.devices.removeListener(listener);
@@ -551,8 +553,15 @@ public class TracerDialog {
         }, new GridData(SWT.FILL, SWT.FILL, true, false));
 
         fileLabel = createLabel(outGroup, "File Name*:");
-        file = withLayoutData(createTextbox(outGroup, formatTraceName(friendlyName)),
-            new GridData(SWT.FILL, SWT.FILL, true, false));
+        //解决systemtrace崩溃问题
+          // if(friendlyName ==null)
+          // {
+          //   friendlyName = "hello";
+          // }
+        // file = withLayoutData(createTextbox(outGroup, formatTraceName(friendlyName)),
+        //     new GridData(SWT.FILL, SWT.FILL, true, false));
+
+        file = withLayoutData(createTextbox(outGroup, friendlyName),new GridData(SWT.FILL, SWT.FILL, true, false));
 
         requiredFieldMessage = withLayoutData(
             createLabel(this, "Please fill out required information (labeled with *)."),
@@ -680,7 +689,7 @@ public class TracerDialog {
         ComboViewer combo = createDropDownViewer(parent);
         combo.setContentProvider(ArrayContentProvider.getInstance());
         //暂时取消 system profiler
-        //combo.setInput(TraceType.values());
+        combo.setInput(TraceType.values());
         combo.setInput(new  TraceType[]{TraceType.Vulkan,TraceType.ANGLE});
         combo.setSelection(new StructuredSelection(deflt));
         return combo;

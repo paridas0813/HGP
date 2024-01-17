@@ -113,11 +113,11 @@ public class LoadingScreen extends Composite {
         createComposite(container, withSpacing(new GridLayout(2, false), 150, 5)),
         new GridData(SWT.CENTER, SWT.TOP, false, false));
 
-        //暂时隐藏系统profiler trace
-    // withLayoutData(BigButton.systemProfiler(buttonContainer, theme, e ->
-    //     showSystemTracingDialog(
-    //         checkNotNull(client), getShell(), checkNotNull(models), checkNotNull(widgets))),
-    //     new GridData(SWT.FILL, SWT.TOP, true, false));
+       // 暂时隐藏系统profiler trace
+    withLayoutData(BigButton.systemProfiler(buttonContainer, theme, e ->
+        showSystemTracingDialog(
+            checkNotNull(client), getShell(), checkNotNull(models), checkNotNull(widgets))),
+        new GridData(SWT.FILL, SWT.TOP, true, false));
     withLayoutData(BigButton.frameProfiler(buttonContainer, theme, e ->
         showFrameTracingDialog(
             checkNotNull(client), getShell(), checkNotNull(models), checkNotNull(widgets))),
